@@ -1,0 +1,78 @@
+Question,Answers
+Can I Import Purchase Orders?,"You can import up to 50 purchases orders and 5,000 orderlines per file and an individual purchase order can have a maximum of 2,000 orderlines. We have some documentation available on this here https://www.netohq.com/support/s/article/import-purchase-orders"
+Is there a field to add a batch number and expiry dates for each product?,"Neto and Neto Inventory does not specifically support Batches or Food Batches, though we do support serialization (recording serial barcodes on orderlines when shipped) ."
+Can I correct cost prices in bulk?,"If the incorrect or no cost price was set on items when Inventory was first installed, this can be fairly difficult to correct. However, there are two options, to update the cost price in bulk:
+First Option: Provided you have a cost price that you want to update products with, it is possible to run an adjustment to basically remove all stock of the item on the store and then return it with the intended cost price.
+
+To provide an example, say you have an item with 200 stock and a cost price of $43 and want to change this to an average cost price of $30. Below is how this would look like on a stock adjustment:
+
+Line 1: - 200 stock, with the current cost price ($43) 
+
+Line 2: +200 stock, with the intended cost price ($30). 
+
+ What this does is bring the total value of the item to $0 and then add the stock back with the correct cost price to create the new average of $30.
+
+ While it is possible to populate stock adjustments via a CSV, you can only have 250 lines in a single adjustment. As it requires 2 lines for each product, this would be 125 products can be adjusted on a single adjustment. This is the tedious part but has some advantages over option 2. 
+
+Option 2: Uninstall Inventory
+
+Neto Inventory can be Uninstalled and Reinstalled when required. However, when uninstalling Neto Inventory, all previous Purchase Orders, Stock Adjustments and Stocktakes are removed and can no longer be retrieved. 
+
+The advantage, however, is while Inventory is uninstalled, you are able to import Stock and the Cost Price which will allow you to basically have a fresh start with Neto Inventory again. Once all product data has been corrected, Inventory can be installed again. 
+
+This can also provide an opportunity to do a full stocktake when re-uploading stock levels and ensure that any item which contains stock, has a cost price. "
+What is your recommended approach to stocktakes?,"Currently, Stock takes in Neto support 250 lines per stocktake. However, it is still possible to create multiple Stocktakes to start and count on at a later point.
+
+The best method to create stocktakes is to go to Products > View Products, and then apply filters to either create stocktakes by the Pick Zone or Category where there are a large number of options to filter by, depending on what data is available in Neto. From there, you can set the #per Page to 250, use Select All > With Selected > Create Stocktake and then move to the next page and create a new stocktake following the steps before.
+
+Once the stocktakes are prepared, you can then assign a user a stocktake and start, count and then complete the stocktake. Once the stocktake is started, any items on that stocktake will prevent users from fulfilling orders that contain items that are being stocktakes. However this does not apply to order fulfilled through the POS, so it is best to avoid making sales through the POS during a stocktake."
+How do I do stocktakes with a barcode gun or scanner?,"The easiest way to explain the functionality of how it would work is as below;
+
+If you had a device with the control panel in the warehouse connected to a scanner you would select product bar code field in the control panel to highlight the field. Once the field is selected you are able to scan the bar code. When the bar code loads you are then able to enter the amount counted and repeat for the next product. This method will work provided the UPC/EAN field is populated within the product card. 
+
+"
+Can I have multiple incoming stock dates?,"If stock is being received on a purchase order, the purchase order can be partially received until the 2nd lot has arrived. 
+
+If just using the preorder date, you can only enter in the earliest arriving stock. So only enter in 10 Pre-order qty and arrival date, once stock arrives fix the date back up to the next shipment."
+"If a sku is set to inactive, will the cost value of the items on the inactive sku be included in the total value of the skus we stock or does the product cease to exist as far as reporting is concerned?","Any stock for an item that is in Neto will be recorded against the stock valuation regardless of it's active status. This is due to the fact that the stock still exists in the warehouse in Neto, even if the item is inactive. If you wish for this stock to be excluded from the report, it will need to be removed from the warehouse where it is recorded."
+Do I have to have stock in my warehouse for pre-order to work?,"Pre-order set up article can be found here: https://www.netohq.com/support/s/article/add-and-manage-products#8
+
+If you are enquiring about the possibility of pre-order functions to work on true stock levels and incoming qty this is possible through a design tweak."
+Is it possible to only sell from one of the multiple warehouses that are active?,"No this is not possible at present. The reason for this is the  quantity on hand ( what can be sold) is calculated using qty in warehouse - committed qty and there is no way to disable this warehouse from being in the calculation. Warehouses should not be used as a ""holding"" for damaged goods etc. This should be managed outside of Neto. "
+We have two parent products that keep coming up with negative stock numbers how do I fix this?,The issue is that the parent product should be calculating stock based on how much stock the child products have on hand.  This can sometimes cache for a number of reasons from order processing to importing orders etc. The resolution for this is to use the recalculate stock button on the top right-hand side of the stock adjustment & stock take page for sites without advanced inventory 
+Why does my parent product have kitted qty when the product isn't apart of a kit?,Parent product qty on hand & kitted is calculated based on the child products stock on hand. This is expected behaviour! 
+"SKU shows 2 items ""on order"" but these orders have already been dispatched?",Symptoms of this issue are orders still associated with the product stock control area and the cause could be order(s) have been dispatched but the product/order line hasn't been picked
+Why is it possible to oversell on POS and how can it be avoided?,"The Neto POS system was designed for in-store sales, with the assumption that if a product is physically present in-store and presented to the register by a customer, it should be possible to sell it (as it would indicate that the stock figures are incorrect).
+POS will not prevent you from selling out-of-stock items, nor warn you against stock being low or null. A product's Stock on Hand can be viewed by clicking on the (i) icon on the product thumbnail:"
+How do I use the Inventory Change Log?,"To understand the log, it is important to look at the Action. In the log, there is a column for 'Action' which will give some detail about what is happening in each entry. 
+When the action shows as 'Adjustment', the quantities on the report are showing the change to Store Qty, Warehouse Qty, Committed Qty and Kitted Qty when an action made. However, this does not show the resulting qty of each action. 
+However, if the Action value is ‘Information’ this will display the current Store Qty, Warehouse Qty and Committed Qty, depending on the type of log run. For example, if you see the Type column with ""LogWarehouseQty"", this is logging the current Warehouse Stock. This also applies to the Type ""LogStockQty"" which is logging the Qty on Hand at that point of time. "
+What are the low stock and restock alert reports for?,"This report is designed to inform the customer when a product has reached a point where more stock is required to order. Customers can set an Alert Qty, so if the item’s Qty on Hand + Incoming Qty goes below the Alert Qty, an email can be sent to the customer and displayed in the report.
+Customers can also set a Default Re-Order Qty, so when creating a purchase order form the report, you can have the Order Qty pre-filled with a set Qty. 
+However, currently no tracking and parent products can show on this report, a workaround is to set the Alert Qty and Restock Qty to a large negative number so it will not display on reports or emails
+Alert Qty is used for restock emails & Restock Qty is used for the report. "
+How do kits work?,"You can read more in the documentation for this and a basic explanation is below https://www.netohq.com/support/s/article/set-up-kit-hamper-bundle-products
+Basically, how it works is you create a Kit Product which is the item customers see and have added to the cart on the website. In the kit product, you list down the products which build the kit and how many of the item is included in the kit. In this example, say the kit is built by:
+1 x Product_A
+2 x Product_B
+1 x Product_C
+The stock of the Kit Products is based on the stock levels of the components, meaning if one component is out of stock, the customer cannot purchase the kit unless the store is configured to allow out of stock purchases. The same happens if Product_A has 2 stock and the customer is trying to purchase 5 kits, the customer will be limited to purchasing 2 kits, as Product_A has only 2 stock remaining. 
+When the kit is purchased, the stock is then deducted on the components. The Kit Product is simply treated as a container and the components which build the kit control stock.
+In terms of picking a kit when an order is placed, there is an option on the kit product called 'Split for Warehouse Picking'. When this option is turned on, the picking slips will list down the components that built the kit and the warehouse location of the components, rather than listing the Kit Product. "
+How do editable kits work?,"To create Editable Kits, you will need the Addon installed from the Addons Page. Once created, you will have the tick box available on Kit Products to change the kit from a Standard Kit to an Editable Kit.
+Qty: This pre-fills the default qty for each component product in an editable kit for adding the kit to cart
+Min Qty: The minimum allow qty of that component when adding to cart
+Max Qty: The max allow qty of that component when adding to cart
+Group: Grouping is a way to set a Min and Max Qty per a group of products, rather than one. Meaning a customer must select one of the options, but no more than the Max. In the image below, I have grouped option 1 and 2 together, and option 3 and 4 together. You can click on the Pen & Notepad beside each group to edit the options in the group. "
+How do I calculate the cost price and profit margin for kitted items on sales orders?,"The cost of goods sold on an invoice is locked in at the point the orderlines are marked as Picked and ready for Packing, this generally occurs when the order transitions from the status Pick to Pack. 
+This allows you to take orders for items that have been ordered from a supplier but not received. As long as the order is not picked before the purchase order is received, the orderlines will be updated when the order is then picked and the items cost of goods sold is calculated. If an order is at any point Unpicked, the cost of goods sold will be updated again when the order is re-picked, however, if the stock journal has exported to Xero, to avoid duplicated a second journal is not updated."
+"When creating a product made up of kitting 2 or more items, what do we put in the default purchase price?",The default purchase price only needs to be set up on the components as you don't create a purchase order for kits. The kit components are the purchased/stocked items as the kit is a virtual product made from the components.
+Can I have a prepackaged kit ( warehouse qty) assigned to a kitted product?,Holding a warehouse quantity for kits is not supported as it would be removed on a schedule (stockqty_cache). This means we cannot support pre-packaged kits at present.
+Why is my Kit not updating with kitted quantity?,If you have just created a kit or the kitted qty isn't adding up to what you have just set it is possible that Update Item Kitting Stock process needs to be run. Navigate to system scheduled tasks ( cpanel/batchproc) and search for Update Item Kitting Stock to run the process.
+How do we set up Pick and Pack to show the components and not the SKU the order is sold on?,Tick Split for Warehouse Picking on the kit product if the components of your kit need to be picked separately in the warehouse. Otherwise the kit will be listed as a single line item on pick slips.
+Can I get a historical stock valuation for the end of the financial year?,"Neto can only report on the figures that are currently in Neto, not historical inventory stock calculations,
+You can create a scheduled export to an email address with SKU, Stock in X Warehouse(s) & Average Cost Price, which you can save locally for future reference. 
+The below guides are available on how to set up a custom export and create a schedule:
+https://www.netohq.com/support/s/article/product-export-wizard
+https://www.netohq.com/support/s/article/data-import-export-overview#4
+This way you can have an automated export to your email address if you need to report back on historical figures."
